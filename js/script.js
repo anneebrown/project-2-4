@@ -41,12 +41,12 @@ function appendPageLinks (list){
       li.appendChild(aTag);
       aTag.setAttribute("href", "#");
       aTag.textContent = `${i}`; 
+      let aTagList = document.querySelectorAll('a');
       
-      for (let j = 0; j < li.length; j +=1){
-        aTag[j].addEventListener('click', showPage(list, j));
-        event.target.className = "active";
+      for (let j = 0; j < aTagList.length; j +=1){
+        aTagList[j].addEventListener('click', showPage(list, j));
+        
       }
-      
 
    }
 }

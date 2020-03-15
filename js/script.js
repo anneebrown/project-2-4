@@ -42,7 +42,7 @@ function appendPageLinks (list){
       aTag.setAttribute("href", "#");
       aTag.textContent = `${i}`; 
       let aTagList = document.querySelectorAll('a');
-      
+      console.log(aTagList.length);
       for (let j = 0; j < aTagList.length; j +=1){
         aTagList[j].addEventListener('click', showPage(list, j));
         

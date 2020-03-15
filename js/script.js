@@ -41,10 +41,10 @@ function appendPageLinks (list){
       li.appendChild(aTag);
       aTag.setAttribute("href", "#");
       aTag.textContent = `${i}`; 
-      aTag.className = "active"
+      
       for (let j = 0; j < li.length; j +=1){
-        li[j].addEventListener('click', showPage(list, j));
-        li[j].classList.remove('active');
+        aTag[j].addEventListener('click', showPage(list, j));
+        event.target.className = "active";
       }
       
 
@@ -52,4 +52,4 @@ function appendPageLinks (list){
 }
 
 showPage(listItems, 1);
-//appendPageLinks(listItems);
+appendPageLinks(listItems);

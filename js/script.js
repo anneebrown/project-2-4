@@ -14,10 +14,10 @@ const itemsPerPage = 10;
 //showPage function to show only the items meant to be shown
 function showPage(list, page) {
    let startIndex = (page*itemsPerPage) - itemsPerPage;
-   let endIndex = (page*itemsPerPage) - 1;
+   let endIndex = (page*itemsPerPage);
    for (let i = 0; i < list.length; i +=1){
       //appending items to show to the DOM by using an if statement to select items based on their index value
-      if (i >= startIndex && i <= endIndex){
+      if (i >= startIndex && i < endIndex){
          list[i].style.display = 'block';
          } else {
          list[i].style.display = 'none';
@@ -34,16 +34,17 @@ function appendPageLinks (list){
    pageDiv.appendChild(paginationDiv);
    let ul = document.createElement('ul');
    paginationDiv.appendChild(ul);
-   for (let i = 0; i < numberOfPages; i += 1){
+   for (let i = 1; i < numberOfPages+1; i += 1){
       let li = document.createElement('li');
       ul.appendChild(li);
-      li.setAttribute("tag", "a");
-      li.setAttribute("href", "#");
-      li.textContent = `${i}`; 
-      li.className = "active"
-      li.addEventListener('click', showPage(list, i));
-      for (let i = 0; i < li.length; i +=1){
-        li[i].classList.remove('active');
+      let aTag = document.createElement('a');
+      li.appendChild(aTag);
+      aTag.setAttribute("href", "#");
+      aTag.textContent = `${i}`; 
+      aTag.className = "active"
+      for (let j = 0; j < li.length; j +=1){
+        li[j].addEventListener('click', showPage(list, j));
+        li[j].classList.remove('active');
       }
       
 

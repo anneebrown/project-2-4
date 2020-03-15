@@ -52,4 +52,4 @@ function appendPageLinks (list){
 }
 
 showPage(listItems, 1);
-appendPageLinks(listItems);
+//appendPageLinks(listItems);

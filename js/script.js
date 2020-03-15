@@ -29,8 +29,8 @@ function showPage(list, page) {
 function appendPageLinks (list){
    let numberOfPages = listItems.length/itemsPerPage; 
    let paginationDiv = document.createElement('div');
-   paginationDiv.className = 'pagination'
-   let pageDiv = document.querySelector('.page')
+   paginationDiv.className = 'pagination';
+   let pageDiv = document.querySelector('.page');
    pageDiv.appendChild(paginationDiv);
    let ul = document.createElement('ul');
    paginationDiv.appendChild(ul);
@@ -45,7 +45,7 @@ function appendPageLinks (list){
       for (let i = 0; i < li.length; i +=1){
         li[i].classList.remove('active');
       }
-      li.e.target = li.classList.add('active');
+      
 
    }
 }

@@ -40,15 +40,22 @@ function appendPageLinks (list){
       let aTag = document.createElement('a');
       li.appendChild(aTag);
       aTag.setAttribute("href", "#");
-      aTag.textContent = `${i}`; 
-      let aTagList = document.querySelectorAll('a');
+      aTag.textContent = i; 
+      //this returns an object for each number
+      console.log(typeof aTag);
+      //this should create an array of the a-tags, loop over that and pass each value to the showPage function
+      let aTagList = document.getElementsByTagName('a');
+      //the console.log statement shows me 6 lines of digits, from 1 to 6, rather than just the digit 6 (working with the 64 stundents)
       console.log(aTagList.length);
+      //this should loop over my aTagList array
       for (let j = 0; j < aTagList.length; j +=1){
-        aTagList[j].addEventListener('click', showPage(list, j));
+      //should pass the textContent of each aTag to the showPage function to use, maybe needs parseInt? 
+        aTagList[j].addEventListener('click', showPage(list, parseInt(aTag.textContent)));
         
       }
 
    }
+   
 }
 
 showPage(listItems, 1);

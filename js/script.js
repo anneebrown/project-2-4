@@ -45,7 +45,8 @@ function appendPageLinks (list){
       console.log(typeof aTag);
       //this should create an array of the a-tags, loop over that and pass each value to the showPage function
       let aTagList = document.getElementsByTagName('a');
-      //the console.log statement shows me 6 lines of digits, from 1 to 6, rather than just the digit 6 (working with the 64 stundents)
+      //the console.log statement shows me 6 lines of digits, from 1 to 6, rather than just the digit 6 (working with the 64 stundents). -> because it's looping through them as the elements are created?
+      //just console.log'ing the aTagList returns 6 arrays
       console.log(aTagList.length);
       //this should loop over my aTagList array
       for (let j = 0; j < aTagList.length; j +=1){

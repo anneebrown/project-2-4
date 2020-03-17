@@ -13,10 +13,13 @@ const itemsPerPage = 10;
 
 //showPage function to show only the items meant to be shown
 function showPage(list, page) {
+   //sets the first item from the student list to be shown on each page
    let startIndex = (page*itemsPerPage) - itemsPerPage;
+   //sets the last item from the student list to be shown on each page
    let endIndex = (page*itemsPerPage);
+   //loops over the list to determine which students will be shown on the page
    for (let i = 0; i < list.length; i +=1){
-      //appending items to show to the DOM by using an if statement to select items based on their index value
+      //setting which items to display ('block') and which not to display ('none')
       if (i >= startIndex && i < endIndex){
          list[i].style.display = 'block';
          } else {
@@ -27,37 +30,50 @@ function showPage(list, page) {
 
 //appendPageLinks function to create the buttons and make them functional
 function appendPageLinks (list){
+   //dynamically determines how many pages are needed
    let numberOfPages = listItems.length/itemsPerPage; 
+   //creates a new div for the links
    let paginationDiv = document.createElement('div');
+   //adds the pagination class to each new div
    paginationDiv.className = 'pagination';
+   //selects the parent div for the newly created pagination div
    let pageDiv = document.querySelector('.page');
+   //appends the new div to the DOM
    pageDiv.appendChild(paginationDiv);
+   //creates an element for a list to store each link
    let ul = document.createElement('ul');
+   //appends that list to the DOM, as a child for our new pagination div
    paginationDiv.appendChild(ul);
+   //for loop to create the links and append them to the DOM
    for (let i = 1; i < numberOfPages+1; i += 1){
+      //creates list items
       let li = document.createElement('li');
+      //appends the list items to the DOM
       ul.appendChild(li);
+      //creates the a tags
       let aTag = document.createElement('a');
+      //appends them to the the list items
       li.appendChild(aTag);
+      //sets the necessary attributes for the a tags
       aTag.setAttribute("href", "#");
+      //sets the button text
       aTag.textContent = i; 
-      //this returns an object for each number
-      console.log(typeof aTag);
-      //this should create an array of the a-tags, loop over that and pass each value to the showPage function
-      let aTagList = document.getElementsByTagName('a');
-      //the console.log statement shows me 6 lines of digits, from 1 to 6, rather than just the digit 6 (working with the 64 stundents). -> because it's looping through them as the elements are created?
-      //just console.log'ing the aTagList returns 6 arrays
-      console.log(aTagList.length);
-      //this should loop over my aTagList array
+      //selects the first a tag in the list (number 1 button)
+      let firstATag = document.querySelector('a');
+      //selects all a tag elements and puts them into an array
+      let allATags = document.querySelectorAll('a');
+      //gives the active class to the first link
+      firstATag.className = 'active';
+      //using event bubbling and added an event listener to the li element
+      li.addEventListener('click', (event) => {showPage(list, parseInt(aTag.textContent))});
+     
       
-      //should pass the textContent of each aTag to the showPage function to use, maybe needs parseInt? 
-      aTag.addEventListener('click', () => {showPage(list, parseInt(aTag.textContent))});
-        
-      
+   
 
    }
    
 }
 
+//calls both functions
 showPage(listItems, 1);
 appendPageLinks(listItems);

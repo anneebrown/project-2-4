@@ -60,19 +60,26 @@ function appendPageLinks (list){
       aTag.textContent = i; 
       //selects the first a tag in the list (number 1 button)
       let firstATag = document.querySelector('a');
-      //selects all a tag elements and puts them into an array
-      let allATags = document.querySelectorAll('a');
       //gives the active class to the first link
       firstATag.className = 'active';
-      //using event bubbling and added an event listener to the li element
-      li.addEventListener('click', (event) => {showPage(list, parseInt(aTag.textContent))});
-     
       
-   
-
+      //using event bubbling and added an event listener to the li element
+      li.addEventListener('click', (event) => {
+         //calling my showPage function
+         showPage(list, parseInt(aTag.textContent));
+         //selects all a tags in an array
+         let allATags = document.getElementsByTagName('a');
+         //loops through all a tags to remove the active class
+         for (j = 0; j < allATags.length; j += 1){
+            allATags[j].className = '';
+         }
+         //gives the active class to the a tag that was just clicked
+         event.target.className = 'active';
+      });
+      }
    }
    
-}
+
 
 //calls both functions
 showPage(listItems, 1);

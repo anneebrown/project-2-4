@@ -49,11 +49,11 @@ function appendPageLinks (list){
       //just console.log'ing the aTagList returns 6 arrays
       console.log(aTagList.length);
       //this should loop over my aTagList array
-      for (let j = 0; j < aTagList.length; j +=1){
+      
       //should pass the textContent of each aTag to the showPage function to use, maybe needs parseInt? 
-        aTagList[j].addEventListener('click', showPage(list, parseInt(aTag.textContent)));
+        aTag.addEventListener('click', () => {showPage(list, parseInt(aTag.textContent))});
         
-      }
+      
 
    }
    

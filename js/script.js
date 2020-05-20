@@ -31,7 +31,7 @@ function showPage(list, page) {
 //appendPageLinks function to create the buttons and make them functional
 function appendPageLinks (list){
    //dynamically determines how many pages are needed
-   let numberOfPages = listItems.length/itemsPerPage; 
+   let numberOfPages = list.length/itemsPerPage; 
    //creates a new div for the links
    let paginationDiv = document.createElement('div');
    //adds the pagination class to each new div
@@ -84,3 +84,42 @@ function appendPageLinks (list){
 //calls both functions
 showPage(listItems, 1);
 appendPageLinks(listItems);
+
+
+//search functionality
+
+//appends a search bar to the DOM
+const searchBar = document.createElement('input');
+const headerDiv = document.querySelector('.page-header');
+const searchBtn = document.createElement('BUTTON');
+searchBtn.textContent = 'Search';
+searchBtn.setAttribute('class', 'student-search button');
+
+headerDiv.appendChild(searchBtn);
+
+console.log(headerDiv)
+headerDiv.appendChild(searchBar);
+searchBar.setAttribute('class', 'student-search input');
+searchBar.setAttribute('placeholder', 'Search...');
+
+//event listener for search input
+searchBtn.addEventListener('click', (event)=> {
+   //search array to create a list of items that include the search string
+   let searchArray = []
+   document.querySelector('.pagination').remove();
+   for (let i = 0; i < listItems.length; i++){
+      if (listItems[i].innerHTML.includes(searchBar.value.toLowerCase())){
+         searchArray.push(listItems[i]);
+         listItems[i].style.display = 'block';
+      } else {
+         listItems[i].style.display = 'none';
+          }
+   }
+   console.log(searchArray);
+   showPage(searchArray, 1); 
+   appendPageLinks(searchArray);
+})
+
+
+  
+   
